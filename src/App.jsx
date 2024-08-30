@@ -1,12 +1,11 @@
-
 import './App.css';
 import { Homepage } from './component/HomePage/Homepage';
-import { NavbarAfterLogin } from './component/After_Login/Navbar';
+import { NavbarAfterLogin } from './component/After_Login/NavbarAfterLogin';
 import LoginSignUp from './component/LoginSignUp/LoginSignUp';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
+export default function App() {
   return (
     <Router>
       <div>
