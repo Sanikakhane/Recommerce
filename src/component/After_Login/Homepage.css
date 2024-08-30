@@ -37,3 +37,68 @@
 .btn-primary:hover {
     background-color: #45a049;
 }
+/* Hamburger Menu Icon */
+.hamburger-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .hamburger-icon div {
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Sidebar */
+  .slider-bar {
+    width: 200px;
+    position: fixed;
+    top: 0;
+    left: -220px; /* Hidden by default */
+    height: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 0 10px 10px 0;
+    transition: left 0.3s ease;
+    z-index: 99;
+    margin-top: 70px;
+  }
+  
+  .slider-bar.open {
+    left: 0;
+  }
+  
+  .slider-item {
+    margin: 10px 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .slider-item:hover,
+  .slider-item.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  /* Main content margin adjustment */
+  .container {
+    transition: margin-left 0.3s ease;
+  }
+  
+  .container.shifted {
+    margin-left: 220px;
+  }
+  
