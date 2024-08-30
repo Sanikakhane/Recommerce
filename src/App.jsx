@@ -9,11 +9,10 @@ export default function App() {
   return (
     <Router>
       <div>
-        <LoginSignUp />
-        <NavbarAfterLogin />
+        
         <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/support" element={<Homepage />} />
+          <Route path="/" element={<LoginSignUp />} />
+          <Route path="/homepage" element={<Homepage />} />
           <Route path="/about" element={<Homepage />} />
           <Route path="/labs" element={<Homepage />} />
           <Route path="*" element={<Homepage />} />

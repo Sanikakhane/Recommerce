@@ -1,31 +1,50 @@
 import React, { useEffect, useState } from 'react';
 import './LoginSignUp.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginSignUp = () => {
-    const toggleSignup = () => {
-        document.querySelector('.cont').classList.toggle('s--signup');
-    };
-
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [users, setUsers] = useState([]);
+    const [usersWithPasswords, setUsersWithPasswords] = useState([]);
+
+    const navigate = useNavigate(); // Hook for navigation
+
+    const toggleSignup = () => {
+        document.querySelector('.cont').classList.toggle('s--signup');
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
+        // Fetch users for registration
+        const fetchUsers = async () => {
             try {
                 const response = await axios.get("http://localhost:8000/api/v1/getusers");
                 console.log(response.data); // Check the structure of the response
-                const userArray = response.data.data // Ensure it's an array
+                const userArray = response.data.data; // Ensure it's an array
                 setUsers(userArray);
-                console.log(userArray)
+                console.log(userArray);
             } catch (error) {
                 console.error("Error fetching users:", error);
             }
         };
 
-        fetchData();
+        // Fetch users with passwords for login
+        const fetchUsersWithPasswords = async () => {
+            try {
+                const response = await axios.get("http://localhost:8000/api/v1/getuserswithpasswords");
+                console.log(response.data); // Check the structure of the response
+                const userArray = response.data.data; // Ensure it's an array
+                setUsersWithPasswords(userArray);
+                console.log(userArray);
+            } catch (error) {
+                console.error("Error fetching users with passwords:", error);
+            }
+        };
+
+        fetchUsers();
+        fetchUsersWithPasswords();
     }, []);
 
     const validateEmail = (email) => {
@@ -74,15 +93,30 @@ const LoginSignUp = () => {
         });
     };
 
+    const login = () => {
+        if (!username || !password) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        const user = usersWithPasswords.find(user => user.username === username && user.password === password);
+        if (user) {
+            alert("Login successful!");
+            navigate('/homepage'); // Navigate to /homepage after successful login
+        } else {
+            alert("Invalid username or password.");
+        }
+    };
+
     return (
         <div className="cont">
             <div className="form sign-in">
                 <h2>Welcome</h2>
                 <label>
-                    <span>Email</span>
+                    <span>Username</span>
                     <input
-                        type="email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                 </label>
                 <label>
@@ -92,8 +126,8 @@ const LoginSignUp = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
+                <button type="button" onClick={login} className="submit">Sign In</button>
                 <p className="forgot-pass">Forgot password?</p>
-                <button type="button" className="submit">Sign In</button>
             </div>
             <div className="sub-cont">
                 <div className="img">
