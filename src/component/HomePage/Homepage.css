@@ -1,39 +1,214 @@
-.carousel-caption {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
 }
 
-.card-img-top {
-    height: 100px;
-    object-fit: cover;
-    margin-top: 10px;
+body{
+  margin: 0;
+  width:90vw;
+}
+.sidebar.open {
+  transform: translateX(0);
 }
 
-.card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.1s;
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 1.5em;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.card-title {
-    font-size: 1.25rem;
-    font-weight: bold;
+.sidebar li {
+  margin-bottom: 10px;
 }
 
-.card-text {
-    font-size: 1rem;
-    color: #555;
+.sidebar li:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-.btn-primary {
-    background-color: #4CAF50;
-    border: none;
+/* Main Content Styles */
+.main-content {
+  display: flex;
+ /* justify-content: space-around; Adjusted to stack elements vertically */
+ justify-content:space-around;
+ /* padding-right:4rem; */
+  align-items: center; /* Center align elements */
 }
 
-.btn-primary:hover {
-    background-color: #45a049;
+.main-content.with-sidebar {
+  margin-left: 250px;
+}
+
+/* Search Bar Styles */
+.search-bar {
+  display: flex;
+  align-items: center;
+  /* background-color: #007bff; */
+  margin-bottom: 20px;
+  width: 50%; /* Adjusted width for better alignment */
+  /* max-width: 600px; Max width for larger screens */
+  /* Reduced gap between input and button */
+}
+
+.search_input{
+  width: 20%;
+}
+
+.search-bar input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  height: 40px; /* Adjust input field height */
+  box-sizing: border-box;
+}
+
+.search-bar button {
+  padding: 0 15px; /* Adjust horizontal padding */
+  border: 1px solid #ccc;
+  border-left: 0;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 10%;
+  height: 40px; /* Match button height with input field */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center icon horizontally */
+}
+
+.search-bar button i {
+  font-size: 18px; /* Adjust icon size */
+}
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+/* Icons */
+.icon {
+  font-size: 1.5em;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.icon:hover {
+  color: #007bff;
+}
+
+/* Product List Styles */
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-right:3rem;
+  justify-content: center; /* Center align the product cards */
+  margin-top: 20px; /* Add some space from the search bar */
+}
+
+/* Adjust the width and shadow for smaller cards */
+.product-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 150px; /* Adjusted width for smaller cards */
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+.product-image {
+  width: 100%;
+  height: 120px; /* Set a max height for the image */
+  object-fit: cover;
+  display: block;
+}
+
+.product-info {
+  padding: 10px;
+  text-align: center; /* Center align text */
+}
+
+.product-name {
+  font-size: 1em;
+  margin: 0;
+}
+
+.product-price {
+  color: #007bff;
+  font-size: 1.1em;
+  margin-top: 5px; /* Add some spacing between the name and price */
+}
+
+/* Dropdown Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px; /* Space between dropdown and products */
+}
+
+.dropdown-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.dropdown-button:hover {
+  background-color: #0056b3;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 4px;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-content button {
+  background: none;
+  border: none;
+  padding: 12px 16px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
