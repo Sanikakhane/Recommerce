@@ -1,0 +1,30 @@
+.logo-img {
+    width: 250px; /* Adjust the size as needed */
+    height: 100px; /* Maintain aspect ratio */
+}
+
+.nav-link {
+    margin-right: 10px;
+}
+
+.dashboard-btn {
+    background-color: #AF4EA8;
+    color: black;
+    border-radius: 5px;
+}
+
+.login-btn {
+    background-color: #AF4EA8;
+    color: black;
+    border-radius: 5px;
+}
+
+.register-btn {
+    background-color: #AF4EA8;
+    color: black;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+}

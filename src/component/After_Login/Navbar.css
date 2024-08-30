@@ -1,0 +1,32 @@
+.logo-img {
+    height: 50px; /* Adjust as needed */
+    width: auto;
+}
+
+.navbar-light .navbar-brand {
+    margin-left: 20px; /* Adjust if needed */
+}
+
+.dropdown-toggle {
+    background-color: #b057aa; /* Customize as needed */
+    color: black;
+    border: none;
+}
+
+.dropdown-toggle:hover, .dropdown-toggle:focus {
+    background-color: #6d1067; /* Darker green on hover */
+    color: white;
+}
+
+.dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+.dropdown-item {
+    color: #333; /* Customize as needed */
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa; /* Light gray on hover */
+}
