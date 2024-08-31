@@ -67,7 +67,7 @@ const ProductPage = () => {
           <h1 className="text-3xl font-semibold mb-2 text-gray-800">{product[0].name}</h1>
           <p className="text-xl text-gray-600 mb-4">${product[0].price}</p>
           <button
-            className="bg-blue-500 text-white rounded-lg px-6 py-2 text-lg font-semibold transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-blue-500 text-white rounded-lg  po py-2 text-center text-lg font-semibold transition-transform transform hover:scale-105  focus:ring-2 focus:ring-blue-500"
             onClick={handleAddToCart}
           >
             Add to cart

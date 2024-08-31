@@ -75,7 +75,11 @@
   .font-semibold {
     font-weight: 600;
   }
-  
+  .po{
+    padding: 1rem;
+    text-align: center;
+  }
+
   .mb-3 { /* Increased margin-bottom */
     margin-bottom: 1rem; /* 12px */
   }
@@ -117,7 +121,7 @@
   
   .py-3 {
     padding-top: 0.75rem; /* 12px */
-    padding-bottom: 0.75rem; /* 12px */
+    padding-bottom: 0.95rem; /* 12px */
   }
   
   .text-lg {
