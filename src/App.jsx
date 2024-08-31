@@ -8,9 +8,11 @@ import './index.css';
 import { UserProvider } from './usercontext';
 import Cart from './component/cart'
 import './component/cart'
+import Adresspage from './adresspage';
 // import Notification from './component/notification'
 import Notification from './component/notification'
 import Billpage from './billpage';
+import Orderred from './orderred';
 
 export default function App() {
   return (
@@ -20,6 +22,8 @@ export default function App() {
         <Routes>
           <Route path="/cart" element={<Cart/>} />
           <Route path="/" element={<LoginSignUp/>} />
+          <Route path="/ordered" element={<Orderred/>} />
+          <Route path="/adresspage" element={<Adresspage/>} />
           <Route path="/billpage" element={<Billpage/>} />
           <Route path="/homepage" element={<Homepage/>} />
           <Route path="/notificationpage" element={<Notification/>} />

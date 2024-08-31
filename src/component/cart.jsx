@@ -46,14 +46,13 @@ const CartFetcher = () => {
     return <div className="error">Error: {error}</div>;
   }
 
-  if (!cartData.length) {
-    return <div className="loading">Loading...</div>;
-  }
+
 
   function changepage(){
     navigate('/billpage')
   }
   return (
+    cartData.length>0 ?
     <div className="cart-container">
       <h2 className="cart-title">Cart Data</h2>
       <div className="cart-list-container">
@@ -81,7 +80,7 @@ const CartFetcher = () => {
         <button className="cart-payment-button" onClick={changepage}>PAYMENT</button>
       </div>
     </div>
-  );
+  :<div className='flex fonto-bold'>There are no current products....</div>);
 };
 
 export default CartFetcher;
