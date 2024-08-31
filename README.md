@@ -1,4 +1,6 @@
 # Recommerce
+step 0:-
+  Go to master branch first
 Step 1:-
     Pull This repository and run command npm install in that folder
 Step 2:-
