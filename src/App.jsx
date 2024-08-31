@@ -8,6 +8,8 @@ import './index.css';
 import { UserProvider } from './usercontext';
 import Cart from './component/cart'
 import './component/cart'
+// import Notification from './component/notification'
+import Notification from './component/notification'
 
 export default function App() {
   return (
@@ -15,8 +17,10 @@ export default function App() {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<Cart/>} />
-          <Route path="/homepage" element={<Homepage />} />
+          <Route path="/cart" element={<Cart/>} />
+          <Route path="/" element={<LoginSignUp/>} />
+          <Route path="/homepage" element={<Homepage/>} />
+          <Route path="/notificationpage" element={<Notification/>} />
           <Route path="/buyproduct" element={<Buyproduct />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/product/:productname" element={<Buyproduct />} />

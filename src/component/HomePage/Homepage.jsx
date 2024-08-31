@@ -41,6 +41,11 @@ const Homepage = () => {
     navigate('/cart')
   }
 
+
+  function notoficationpage(){
+    navigate('/notificationpage')
+  }
+
   return (
     <div>
       {/* Sidebar */}
@@ -52,7 +57,7 @@ const Homepage = () => {
           <h3>Settings</h3>
           <h3>Orders</h3>
           <h3 onClick={gotocart}>Cart</h3>
-          <h3>Notifications</h3>
+          <h3 onClick={notoficationpage}>Notifications</h3>
         </div>
       </div>
 
