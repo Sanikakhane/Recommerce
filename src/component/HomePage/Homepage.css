@@ -15,10 +15,18 @@
   flex-direction: column;
 }
 
-body{
-  margin: 0;
-  width:90vw;
+
+.sidelist{
+  display: flex;
+  flex-direction: column;
+  gap:0.3rem;
+  margin-top: 2rem;
 }
+
+.sidelist h3{
+  cursor: pointer;
+}
+
 .sidebar.open {
   transform: translateX(0);
 }
@@ -28,27 +36,20 @@ body{
   font-size: 1.5em;
 }
 
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar li {
-  margin-bottom: 10px;
-}
-
-.sidebar li:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
 
 /* Main Content Styles */
 .main-content {
   display: flex;
  /* justify-content: space-around; Adjusted to stack elements vertically */
- justify-content:space-around;
- /* padding-right:4rem; */
+ justify-content:center;
+ gap:5rem;
+ /* ing-right:4rem; */
   align-items: center; /* Center align elements */
+}
+
+.fa-bars{
+  position: absolute;
+  left: 3rem;
 }
 
 .main-content.with-sidebar {
@@ -76,6 +77,7 @@ body{
   flex: 1;
   height: 40px; /* Adjust input field height */
   box-sizing: border-box;
+  margin-right: 1rem;
 }
 
 .search-bar button {
@@ -90,6 +92,7 @@ body{
   height: 40px; /* Match button height with input field */
   display: flex;
   align-items: center;
+  margin-top:7px;
   justify-content: center; /* Center icon horizontally */
 }
 

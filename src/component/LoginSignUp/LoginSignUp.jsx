@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import './LoginSignUp.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../usercontext'; // Import the UserContext
 
 const LoginSignUp = () => {
     const [username, setUsername] = useState("");
@@ -12,19 +13,16 @@ const LoginSignUp = () => {
 
     const navigate = useNavigate(); // Hook for navigation
 
-    const toggleSignup = () => {
-        document.querySelector('.cont').classList.toggle('s--signup');
-    };
+    // Get setUsername from UserContext
+    const { setUsername: setContextUsername } = useContext(UserContext);
 
     useEffect(() => {
         // Fetch users for registration
         const fetchUsers = async () => {
             try {
                 const response = await axios.get("http://localhost:8000/api/v1/getusers");
-                console.log(response.data); // Check the structure of the response
                 const userArray = response.data.data; // Ensure it's an array
                 setUsers(userArray);
-                console.log(userArray);
             } catch (error) {
                 console.error("Error fetching users:", error);
             }
@@ -34,10 +32,8 @@ const LoginSignUp = () => {
         const fetchUsersWithPasswords = async () => {
             try {
                 const response = await axios.get("http://localhost:8000/api/v1/getuserswithpasswords");
-                console.log(response.data); // Check the structure of the response
                 const userArray = response.data.data; // Ensure it's an array
                 setUsersWithPasswords(userArray);
-                console.log(userArray);
             } catch (error) {
                 console.error("Error fetching users with passwords:", error);
             }
@@ -102,10 +98,15 @@ const LoginSignUp = () => {
         const user = usersWithPasswords.find(user => user.username === username && user.password === password);
         if (user) {
             alert("Login successful!");
+            setContextUsername(username); // Update the context with the logged-in username
             navigate('/homepage'); // Navigate to /homepage after successful login
         } else {
             alert("Invalid username or password.");
         }
+    };
+
+    const toggleSignup = () => {
+        document.querySelector('.cont').classList.toggle('s--signup');
     };
 
     return (
@@ -116,6 +117,7 @@ const LoginSignUp = () => {
                     <span>Username</span>
                     <input
                         type="text"
+                        value={username}
                         onChange={(e) => setUsername(e.target.value)}
                     />
                 </label>
@@ -123,6 +125,7 @@ const LoginSignUp = () => {
                     <span>Password</span>
                     <input
                         type="password"
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
@@ -148,6 +151,7 @@ const LoginSignUp = () => {
                         <span>Name</span>
                         <input
                             type="text"
+                            value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </label>
@@ -155,6 +159,7 @@ const LoginSignUp = () => {
                         <span>Email</span>
                         <input
                             type="email"
+                            value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
@@ -162,13 +167,14 @@ const LoginSignUp = () => {
                         <span>Password</span>
                         <input
                             type="password"
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
                     <button
                         type="button"
                         onClick={register}
-                        className="submit"
+                        className="submit text-white"
                     >
                         Sign Up
                     </button>

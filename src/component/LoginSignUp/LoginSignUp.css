@@ -71,6 +71,8 @@ button {
     height: 36px;
     border-radius: 30px;
     color: #fff;
+    position: relative;
+    /* left:159px; */
     font-size: 15px;
     cursor: pointer;
 }
