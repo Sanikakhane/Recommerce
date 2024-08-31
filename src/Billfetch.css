@@ -1,0 +1,63 @@
+/* BillFetch.css */
+
+.bill-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid black;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f9f9f9;
+  }
+  
+  .bill-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  .bill-content {
+    padding: 10px;
+    border-top: 2px solid black;
+  }
+  
+  .bill-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+  }
+  
+  .bill-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px dashed black;
+  }
+  
+  .item-name {
+    flex: 1;
+    font-size: 18px;
+  }
+  
+  .item-price {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .bill-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    border-top: 2px solid black;
+    margin-top: 10px;
+  }
+  
+  .bill-error {
+    color: red;
+    text-align: center;
+  }
+  

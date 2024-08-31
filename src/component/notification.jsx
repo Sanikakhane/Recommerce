@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../usercontext'; // Ensure this path is correct
+import '../notification.css'; // Import the CSS file
 
 const Notification = () => {
   const [cartData, setCartData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [retrying, setRetrying] = useState(false);
-  const [images, setImages] = useState({});
+  const [suggestions, setSuggestions] = useState([]);
   const { username } = useContext(UserContext); // Get username from context
 
+  // Fetch cart data
   const fetchCartData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/getcart?username=${username}`, 
-        {
+      const response = await fetch(`http://localhost:8000/api/v1/getcart?username=${username}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -29,10 +30,9 @@ const Notification = () => {
         setLoading(false); // Data is fetched, stop loading
         setRetrying(false);
 
-        // Fetch images for each product type
-        const uniqueTypes = ["clothing","electronics","food"];
-        console.log(uniqueTypes)
-        uniqueTypes.forEach(type => fetchImage(type));
+        // Fetch product suggestions for each unique product type
+        const uniqueTypes = Array.from(new Set(data.data.map(item => item.product_type))); // Updated field name
+        uniqueTypes.forEach(type => fetchProductSuggestions(type));
       } else {
         // Retry after a short delay if no data is returned
         setRetrying(true);
@@ -44,24 +44,28 @@ const Notification = () => {
     }
   };
 
-  const fetchImage = async (type) => {
+  // Fetch product suggestions based on product type
+  const fetchProductSuggestions = async (type) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/getimg/${type}`, {
-        method: 'GET',
+      const response = await fetch('http://localhost:8000/api/v1/getproductbytype', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ type: type }), // Sending product_type field
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch image');
+        throw new Error('Failed to fetch product suggestions');
       }
 
-      const imgLink = await response;
-      console.log(imgLink) // Assuming the API returns a URL as text
-      setImages(prevImages => ({ ...prevImages, [type]: imgLink }));
+      const data = await response.json();
+      
+      // Limit the suggestions to 2 products per type
+      const limitedProducts = data.data.slice(0, 2);
+      setSuggestions(prevSuggestions => [...prevSuggestions, { type, products: limitedProducts }]);
     } catch (err) {
-      console.error(`Failed to fetch image for type ${type}:`, err);
+      console.error(`Failed to fetch suggestions for type ${type}:`, err);
     }
   };
 
@@ -83,36 +87,46 @@ const Notification = () => {
   }
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
-      <div className='flex w-full h-32 justify-center items-around'>
-        <div className='w-[50%] flex justify-center items-center text-bold'>
-          <h1 className='text-center font-bold'>IF YOU LIKE THIS</h1>
+    <div className="notification-container">
+      <div className="notification-header">
+        <div className="if-you-like">
+          <h1>IF YOU LIKE THIS......</h1>
         </div>
-        <div className='w-[50%] flex justify-center items-center text-bold'>
-          <h2 className='text-center font-bold'>YOU MIGHT ALSO LIKE THIS</h2>
+        <div className="you-might-also-like">
+          <h2>YOU MIGHT ALSO LIKE THESE</h2>
         </div>
       </div>
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="error-message">{error}</p>}
       {cartData.length > 0 ? (
-        <ul>
+        <div className="cart-display">
           {cartData.map((item, index) => (
-            <li key={index} className="border-b py-4">
-              <div className="flex items-center bg-red-300">
-                <img src={item.link} alt={item.name} className="w-16 h-16 object-cover mr-4" />
-                <div>
-                  <h2 className="text-lg font-semibold">{item.productName}</h2>
-                  <p className="text-gray-700">Price: ${item.price}</p>
-                  {images[item.productType] && (
-                    <div>
-                      <img src={images[item.productType]} alt={item.productType} />
-                      <p>{item.productType}</p>
-                    </div>
-                  )}
+            <div key={index} className="cart-item-wrapper">
+              <div className="cart-item">
+                <img src={item.link} alt={item.name} className="cart-item-image" />
+                <div className="cart-item-info">
+                  <h2 className="cart-item-name">{item.name}</h2>
+                  <p className="cart-item-price">Price: ${item.price}</p>
                 </div>
               </div>
-            </li>
+              <div className="suggestions">
+                {suggestions
+                  .filter(suggestion => suggestion.type === item.product_type) // Match the type
+                  .map((suggestion, idx) => (
+                    <div key={idx} className="suggestion-section">
+                      {suggestion.products.map((product, idx) => (
+                        <div key={idx} className="suggestion-item">
+                          <img src={product.link} alt={product.productname} className="suggestion-item-image" />
+                          <div className="suggestion-item-info">
+                            <h4 className="suggestion-item-name">{product.productname}</h4>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>No items in your cart.</p>
       )}

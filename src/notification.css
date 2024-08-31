@@ -1,0 +1,129 @@
+.notification-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #fff; /* White background for a clean look */
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    max-width: 900px; /* Increased maximum width */
+    margin: 20px auto; /* Center horizontally and space out from top/bottom */
+    border: 1px solid #ddd; /* Light border for subtle distinction */
+  }
+  
+  .notification-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .if-you-like, .you-might-also-like {
+    margin-bottom: 15px;
+  }
+  
+  .if-you-like h1, .you-might-also-like h2 {
+    font-size: 20px; /* Larger font size for headers */
+    font-weight: bold;
+    color: #111; /* Darker text color for better contrast */
+  }
+  
+  .cart-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .cart-item-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px; /* Increased space between items */
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    width: 100%; /* Full width for better alignment */
+    max-width: 200px; /* Fixed width for each cart item */
+    border: 1px solid #f3f3f3; /* Very light border for distinction */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px; /* Increased padding for spacing */
+    background-color: #f9f9f9; /* Light background for each item */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for items */
+  }
+  
+  .cart-item-image {
+    width: 100px; /* Larger image size */
+    height: 100px; /* Larger image size */
+    margin-right: 15px;
+    border-radius: 8px; /* Rounded corners for images */
+    object-fit: cover; /* Ensure images are contained properly */
+  }
+  
+  .cart-item-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px; /* Larger font size for better readability */
+  }
+  
+  .cart-item-info h2 {
+    font-size: 16px; /* Slightly larger font size for item names */
+    color: #333; /* Darker text color for names */
+  }
+  
+  .cart-item-info p {
+    font-size: 14px; /* Font size for price and other details */
+    color: #666; /* Slightly lighter text color */
+  }
+  
+  .suggestions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .suggestion-section {
+    margin-bottom: 30px; /* Increased space between suggestion sections */
+  }
+  
+  .suggestion-section h3 {
+    font-size: 16px; /* Larger font size for section headers */
+    font-weight: bold;
+    color: #111; /* Darker text color for section headers */
+  }
+  
+  .suggestion-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* Space between suggestion items */
+    border: 1px solid #ddd; /* Light border for distinction */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Padding for spacing */
+    background-color: #fff; /* White background for items */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for items */
+  }
+  
+  .suggestion-item-image {
+    width: 60px; /* Slightly larger image size */
+    height: 60px; /* Slightly larger image size */
+    margin-right: 15px;
+    border-radius: 8px; /* Rounded corners for images */
+    object-fit: cover; /* Ensure images are contained properly */
+  }
+  
+  .suggestion-item-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px; /* Font size for suggestion details */
+  }
+  
+  .suggestion-item-info h4 {
+    font-size: 14px; /* Larger font size for product names */
+    color: #333; /* Darker text color for names */
+  }
+  
+  .suggestion-item-info p {
+    font-size: 12px; /* Font size for prices */
+    color: #666; /* Slightly lighter text color */
+  }
+  

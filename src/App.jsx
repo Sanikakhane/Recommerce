@@ -10,6 +10,7 @@ import Cart from './component/cart'
 import './component/cart'
 // import Notification from './component/notification'
 import Notification from './component/notification'
+import Billpage from './billpage';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Routes>
           <Route path="/cart" element={<Cart/>} />
           <Route path="/" element={<LoginSignUp/>} />
+          <Route path="/billpage" element={<Billpage/>} />
           <Route path="/homepage" element={<Homepage/>} />
           <Route path="/notificationpage" element={<Notification/>} />
           <Route path="/buyproduct" element={<Buyproduct />} />

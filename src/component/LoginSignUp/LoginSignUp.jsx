@@ -98,7 +98,9 @@ const LoginSignUp = () => {
         const user = usersWithPasswords.find(user => user.username === username && user.password === password);
         if (user) {
             alert("Login successful!");
-            setContextUsername(username); // Update the context with the logged-in username
+            setContextUsername(username);
+            setUsername(username)
+            console.log(username) // Update the context with the logged-in username
             navigate('/homepage'); // Navigate to /homepage after successful login
         } else {
             alert("Invalid username or password.");

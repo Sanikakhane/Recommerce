@@ -96,7 +96,7 @@ button {
     width: 900px;
     height: 100%;
     /* background-image: url("ext.jpg"); */
-    background-color: #f483ec;
+    background-color: #0a27ac;
     opacity: .8;
     background-size: cover;
     transition: transform 1.2s ease-in-out;
@@ -239,7 +239,7 @@ input {
 .submit {
     margin-top: 40px;
     margin-bottom: 20px;
-    background: #911c89;
+    background: #18025f;
     text-transform: uppercase;
 }
 

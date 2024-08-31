@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../usercontext';
+import './buyproduct.css'
+
 
 const ProductPage = () => {
   const { productname } = useParams(); // Get the product name from the URL
@@ -13,8 +15,8 @@ const ProductPage = () => {
         const response = await fetch(`http://localhost:8000/api/v1/getproductbyname/${productname}`);
         const data = await response.json();
         setProduct(data.data);
-        console.log(username)
-        console.log(data.data)
+        console.log(username);
+        console.log(data.data);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
@@ -33,7 +35,7 @@ const ProductPage = () => {
         },
         body: JSON.stringify({
           username: username,
-          productname: product.name, // Assuming 'product.name' is the correct key for the product name
+          productname: product[0].name, // Assuming 'product.name' is the correct key for the product name
         }),
       });
 
@@ -51,20 +53,26 @@ const ProductPage = () => {
     }
   };
 
-  if (!product) return <div>Loading...</div>;
+  if (!product) return <div className="text-center py-10 text-lg">Loading...</div>;
 
   return (
-    <div className="container mx-auto p-4 bg-blue-300 w-[80vh] rounded-lg">
-      <div className="flex flex-col items-center">
-        <img src={product[0].link} alt={product[0].name} className="w-64 h-64 object-cover mb-4 rounded-lg" />
-        <h1 className="text-2xl font-bold mb-2">{product[0].name}</h1>
-        <p className="text-lg text-gray-700 mb-4">${product[0].price}</p>
-        <button
-          className="bg-blue-500 text-white rounded "
-          onClick={handleAddToCart}
-        >
-          Add to cart
-        </button>
+    <div className="container mx-auto p-6 bg-white rounded-lg shadow-lg max-w-2xl">
+      <div className="flex flex-col md:flex-row ml-8 items-center space-y-4 md:space-y-0 md:space-x-6">
+        <img 
+          src={product[0].link} 
+          alt={product[0].name} 
+          className="w-full md:w-1/2 h-64 object-cover rounded-lg shadow-md"
+        />
+        <div className="flex flex-col items-start md:items-center md:text-center">
+          <h1 className="text-3xl font-semibold mb-2 text-gray-800">{product[0].name}</h1>
+          <p className="text-xl text-gray-600 mb-4">${product[0].price}</p>
+          <button
+            className="bg-blue-500 text-white rounded-lg px-6 py-2 text-lg font-semibold transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onClick={handleAddToCart}
+          >
+            Add to cart
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -5,57 +5,124 @@
   left: 0;
   width: 250px;
   height: 100%;
-  background-color: #333;
+  background-color: #232f3e; /* Dark blue similar to Amazon */
   color: white;
   transform: translateX(-100%);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Add transition for shadow */
   padding: 20px;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3); /* Added stronger right shadow */
   display: flex;
   flex-direction: column;
+  z-index: 1000; /* Ensure the sidebar stays on top */
 }
 
-
-.sidelist{
-  display: flex;
-  flex-direction: column;
-  gap:0.3rem;
-  margin-top: 2rem;
-}
-
-.sidelist h3{
-  cursor: pointer;
-}
-
-.sidebar.open {
-  transform: translateX(0);
-}
-
+/* Sidebar header */
 .sidebar h2 {
   margin-top: 0;
   font-size: 1.5em;
+  font-weight: bold;
 }
 
+/* Sidebar list styles */
+.sidelist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Slightly increased gap */
+  margin-top: 2rem;
+}
+
+.sidelist h3 {
+  cursor: pointer;
+  font-size: 1.1em; /* Slightly larger font size */
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.sidelist h3:hover {
+  background-color: #37475a; /* Darker shade for hover effect */
+}
+
+/* Open state of the sidebar */
+.sidebar.open {
+  transform: translateX(0);
+  box-shadow: 30px 0px 70px 20px rgba(0, 0, 0, 0.4); /* Stronger shadow when open */
+}
 
 /* Main Content Styles */
 .main-content {
   display: flex;
- /* justify-content: space-around; Adjusted to stack elements vertically */
- justify-content:center;
- gap:5rem;
- /* ing-right:4rem; */
-  align-items: center; /* Center align elements */
+  justify-content: center;
+  gap: 5rem;
+  align-items: center;
+  transition: margin-left 0.3s ease-in-out; /* Transition for margin-left */
 }
 
-.fa-bars{
-  position: absolute;
-  left: 3rem;
-}
-
+/* Adjusted main content with sidebar */
 .main-content.with-sidebar {
   margin-left: 250px;
 }
 
+/* Icon styles */
+.fa-bars {
+  position: absolute;
+  left: 3rem;
+  color: #16032d; /* Icon color */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px; /* Space between dropdown and products */
+}
+
+.dropdown-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+  z-index: 1001; /* Ensure button is above other content */
+}
+
+.dropdown-button:hover {
+  background-color: #0056b3;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure dropdown is below the button but above other content */
+  border-radius: 4px;
+  top: 100%; /* Ensures it appears below the button */
+  left: 0;
+  margin-top: 4px; /* Small gap between button and dropdown */
+}
+
+.dropdown-content button {
+  background: none;
+  border: none;
+  padding: 12px 16px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  display: block; /* Ensure buttons are displayed as block elements */
+}
+
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 /* Search Bar Styles */
 .search-bar {
   display: flex;
@@ -68,17 +135,52 @@
 }
 
 .search_input{
-  width: 20%;
+  width: 19%;
 }
 
 .search-bar input {
-  border: 1px solid #ccc;
+  border: 2px solid #0d042d;
   border-radius: 4px;
   flex: 1;
   height: 40px; /* Adjust input field height */
   box-sizing: border-box;
   margin-right: 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+
 }
+  .search-bar {
+    position: relative; /* This will contain the absolute positioning of the dropdown */
+  }
+
+
+
+/* Suggestions Dropdown Styles */
+.suggestions-dropdown {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #151010;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-height: 200px; /* Adjust as needed */
+  overflow-y: auto; /* Adds scroll if content overflows */
+  z-index: 100000; /* Ensure it appears above other content */
+  width: 100%; /* Match width of input */
+  top: 100%; /* Position below the input */
+  left: 0;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0; /* Light background on hover */
+}
+W
 
 .search-bar button {
   padding: 0 15px; /* Adjust horizontal padding */
@@ -93,7 +195,8 @@
   display: flex;
   align-items: center;
   margin-top:7px;
-  justify-content: center; /* Center icon horizontally */
+  justify-content: center;
+  z-index:999999; /* Center icon horizontally */
 }
 
 .search-bar button i {
@@ -119,99 +222,55 @@
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-right:3rem;
+  gap: 20px; /* Increased gap for more spacing */
   justify-content: center; /* Center align the product cards */
-  margin-top: 20px; /* Add some space from the search bar */
+  margin-top: 20px; /* Space from the search bar */
 }
 
-/* Adjust the width and shadow for smaller cards */
+/* Premium looking product cards */
 .product-card {
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 150px; /* Adjusted width for smaller cards */
+  border: 1px solid #e0e0e0; /* Light border */
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for premium look */
+  width: 200px; /* Adjusted width for a more balanced look */
   margin-bottom: 20px;
   overflow: hidden;
-  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
 }
 
 .product-card:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: translateY(-10px); /* Elevate card on hover */
   cursor: pointer;
+  background-color: #f9f9f9; /* Slightly lighter background on hover */
 }
 
+/* Product image styling */
 .product-image {
   width: 100%;
-  height: 120px; /* Set a max height for the image */
+  height: 150px; /* Increased height for more prominent images */
   object-fit: cover;
   display: block;
+  border-bottom: 1px solid #e0e0e0; /* Border to separate image from info */
 }
 
+/* Product info styling */
 .product-info {
-  padding: 10px;
+  padding: 15px; /* Increased padding for better spacing */
   text-align: center; /* Center align text */
 }
 
 .product-name {
-  font-size: 1em;
+  font-size: 1.1em; /* Slightly larger font size */
   margin: 0;
+  font-weight: bold; /* Bold text for emphasis */
+  color: #333; /* Darker text color for readability */
 }
 
 .product-price {
-  color: #007bff;
-  font-size: 1.1em;
-  margin-top: 5px; /* Add some spacing between the name and price */
-}
-
-/* Dropdown Styles */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 20px; /* Space between dropdown and products */
-}
-
-.dropdown-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.dropdown-button:hover {
-  background-color: #0056b3;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  min-width: 160px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  border-radius: 4px;
-  top: 100%;
-  left: 0;
-}
-
-.dropdown-content button {
-  background: none;
-  border: none;
-  padding: 12px 16px;
-  text-align: left;
-  width: 100%;
-  cursor: pointer;
-}
-
-.dropdown-content button:hover {
-  background-color: #f1f1f1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
+  color: #e53935; /* Bright red color for price */
+  font-size: 1.2em; /* Slightly larger font size */
+  margin-top: 10px; /* More spacing from the name */
+  font-weight: bold; /* Bold text for emphasis */
 }
